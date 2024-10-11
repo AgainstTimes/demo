@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{web}} <br> {{number}}
+    </div>
+</body>
+<script type="module">
+    import { createApp, reactive, ref } from './vue.esm-browser.js'
+    createApp({
+
+        setup() {
+            const web = reactive({
+                title: "Jessika",
+                url: "Jessika.us"
+            })
+
+            const number = ref(10)
+
+            return {
+                web, number
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
