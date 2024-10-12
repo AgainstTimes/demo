@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{web}} <br>
+        {{web.title}} ---
+        <button @click="changeTitle">click</button>
+    </div>
+</body>
+<script type="module">
+    import { createApp, reactive } from './vue.esm-browser.js'
+    createApp({
+        setup() {
+            const web = reactive({
+                title: "Akeelah",
+                url: "Akeelah.cn"
+            })
+            const changeTitle = () => {
+
+                if (web.title == "Jessika") {
+                    web.title = "Akeelah"
+                } else {
+                    web.title = "Jessika"
+                }
+            }
+            return {
+                web, changeTitle
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
