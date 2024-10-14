@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>{{web.show}}</h3>
+        <hr>
+        <p v-show="web.show">Akeelah and Jessika</p>
+        <button @click="toggle">change the stauts</button>
+    </div>
+
+
+</body>
+<script type="module">
+    import { createApp, reactive } from './vue.esm-browser.js'
+    createApp({
+        setup() {
+            const web = reactive({
+                show: true
+            })
+            const toggle = () => {
+                web.show = !web.show
+            }
+            return {
+                web, toggle
+            }
+        },
+    }).mount("#app")
+</script>
+</html>
