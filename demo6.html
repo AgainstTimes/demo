@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>{{web.show}}</h3>
+        <p v-if="web.show">Akeelah and Jessika</p>
+        <hr>
+        <button @click="toggle">showOrNot</button>
+        <hr>
+        <h3>{{web.user}}</h3>
+        <p v-if="web.user <1000">Akeelah</p>
+        <p v-else-if="web.user>=1000 && web.user<=20000">Jessika</p>
+        <p v-else="web.user>100000">Berserker</p>
+    </div>
+</body>
+<script type="module">
+    import { createApp, reactive } from './vue.esm-browser.js'
+    createApp({
+        setup() {
+            const web = reactive({
+                show: true,
+                user: 500
+            })
+            const toggle = () => {
+                web.show = !web.show
+                web.user += web.user
+            }
+            return {
+                web, toggle
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
