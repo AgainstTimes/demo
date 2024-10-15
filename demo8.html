@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(value, index) in data.number">
+            {{index}} - {{value}}
+        </li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="value in data.user">
+            {{value}}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(value, index,key) in data.user">
+            {{index}} - {{value}} -{{key}}
+        </li>
+    </ul>
+    <hr>
+    <ul>
+        <!-- <template> 标签可以用来包装多个元素或者多行代码, 不会在页面中渲染  -->
+        <template v-for="(value, key, index) in data.user">
+            <li v-if="index == 1">
+                index=> {{ index }} : key=> {{ key }} : value=> {{ value }}
+            </li>
+        </template>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="(value, index) in data.teacher" :title="value.firstname" :key="value.id">
+            {{index}} - {{value.firstName}} - {{value.lastName}} -{{value.age}} -{{value.id}}
+        </li>
+    </ul>
+</div>
+
+</body>
+<script type="module">
+    import {createApp, reactive} from "./vue.esm-browser.js";
+
+    createApp({
+        setup() {
+            const data = reactive({
+                number: [1, 2, 3, 4, 5],
+                user: {
+                    firstName: "John",
+                    gender: 'male'
+                }
+                ,
+                teacher: [
+                    {id: 1, firstName: "Adam", lastName: "Jessika", age: 30},
+                    {
+                        id: 2,
+                        firstName: "Berserk",
+                        lastName: "Leelah",
+                        age: 30
+                    }]
+
+            })
+            return {
+                data
+            }
+        }
+
+    }).mount("#app")
+</script>
+</html>
