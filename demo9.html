@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h3>{{data.text}}</h3>
+    <h3>{{data.radio}}</h3>
+    <h3>{{data.checkbox}}</h3>
+    <h3>{{data.remember}}</h3>
+    <h3>{{data.select}}</h3>
+    <hr>
+    <label for="">v-model-text</label><input type="text" v-model="data.text" name="" id=""> <br>
+    <label for="1"></label><input type="radio" name="" id="1" value="1" v-model="data.radio">painting
+    <label for="2"></label><input type="radio" name="" id="2" value="2" v-model="data.radio"> music<br>
+    <label for="111"></label><input type="checkbox" name="" id="111" v-model="data.checkbox" value="111">
+    <label for="222"></label><input type="checkbox" name="" id="222" v-model="data.checkbox" value="222">
+    <label for="333"></label><input type="checkbox" name="" id="333" v-model="data.checkbox" value="333"><br>
+    <label for="444"></label><input type="checkbox" name="" id="444" v-model="data.remember"> <br>
+    <label for="555"></label>
+    <select name="" id="555" v-model="data.select">
+    <option value="">choose</option>
+    <option value="1">A</option>
+    <option value="2">B</option>
+    <option value="3">C</option>
+    </select>
+</div>
+</body>
+<script type="module">
+    import {createApp, reactive} from './vue.esm-browser.js'
+
+    createApp({
+        setup() {
+            const data = reactive({
+                text: 'Hello World',
+                radio: "",
+                checkbox: [],
+                remember: false,
+                select: ""
+            })
+
+            return {
+                data
+            }
+        }
+    }).mount('#app')
+</script>
+</html>
