@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>{{web.url}}</h3>
+        <hr>
+        <input type="text" v-bind:value="web.url" name="" id="">
+        <br>
+        <input type="text" :value="web.url" name="" id="">
+        <hr>
+        <h3>{{web.img}}</h3>
+        <img :src="web.img" alt="">
+        <hr>
+        <h3>{{web.fontstatus}}</h3>
+        <b :class="{textColor:web.fontstatus}">Akeelah and Jessika</b>
+    </div>
+</body>
+<script type="module">
+    import { createApp, reactive } from './vue.esm-browser.js'
+    createApp({
+        setup() {
+
+            const web = reactive({
+                url: 'Akeelah.cn',
+                img: './image.png',
+                fontstatus: true
+            })
+            return {
+                web
+            }
+        }
+    }).mount("#app")
+</script>
+<style>
+    .textColor {
+        color: #d71616;
+    }
+</style>
+</html>
