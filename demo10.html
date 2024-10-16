@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>{{web.url}}</h3>
+        <h3>{{web.user}}</h3> <hr>
+        <input type="text" name="" id="111" v-model="web.url"> <br>
+        <input type="text" name="" id="222" v-model.lazy.trim="web.url"> <br>
+        <input type="text" name="" id="333" v-model.number="web.user">
+    </div>
+</body>
+<script type="module" >
+    import { createApp, reactive } from './vue.esm-browser.js'
+    createApp({
+        setup() {
+            const web = reactive({
+                url:"Akeelah.cn",
+                user:10
+            })
+            return {
+                web
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>l
