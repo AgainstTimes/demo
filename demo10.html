@@ -11,9 +11,9 @@
     <div id="app">
         <h3>{{web.url}}</h3>
         <h3>{{web.user}}</h3> <hr>
-        <input type="text" name="" id="111" v-model="web.url"> <br>
-        <input type="text" name="" id="222" v-model.lazy.trim="web.url"> <br>
-        <input type="text" name="" id="333" v-model.number="web.user">
+        <input type="text" name="" id="111" v-model="web.url"><label for="111"> </label> <br>
+        <input type="text" name="" id="222" v-model.lazy.trim="web.url"><label for="222"> </label> <br>
+        <label for="333"></label><input type="text" name="" id="333" v-model.number="web.user">
     </div>
 </body>
 <script type="module" >
