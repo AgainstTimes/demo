@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>{{a.title}}</h3><hr>
+        <h3 type="text" name=""  v-text="a.title"><hr>
+        <h3 v-html="a.link"></h3>
+    </div>
+
+</body>
+<script type="module">
+    import { createApp, reactive } from './vue.esm-browser.js'
+    createApp({
+        setup() {
+            const a = reactive({
+                title: "Akeelah",
+                url: "Akeelah.cn",
+                link:"<i style='color:blue'>Jessika.us</i>"
+            })
+            return {
+                a
+            }
+        }
+        },
+    }).mount("#app")
+</script>
+
+</html>
