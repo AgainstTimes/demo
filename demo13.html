@@ -31,7 +31,7 @@
     </div>
 </body>
 <script type="module">
-    import { createApp, reactive, ref, watch } from './vue.esm-browser.js'
+    import { createApp, reactive, ref, watch, watchEffect } from './vue.esm-browser.js'
     createApp({
         setup() {
             const hobby = ref("")
@@ -51,6 +51,15 @@
                 console.log("newValue:", newValue, "oldValue:", oldValue)
                 if (date.month == "10") {
                     console.log("10")
+                }
+            })
+            watchEffect(() => {
+                console.log("开始监听。。。。。")
+                if (hobby.value == "2") {
+                    console.log("2")
+                }
+                if (date.year == "2023") {
+                    console.log("2023")
                 }
             })
             return {
