@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <select name="" id="" v-model="hobby">
+            <option value="">choose</option>
+            <option value="1">basketball</option>
+            <option value="2">football</option>
+            <option value="3">baseball</option>
+        </select>
+        <hr>
+        <select name="" id="" v-model="date.year">
+            <option value="">choose</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2022">2022</option>
+        </select>
+        <select name="" id="" v-model="date.month">
+            <option value="">choose</option>
+            <option value="10">10</option>
+            <option value="9">9</option>
+            <option value="8">8</option>
+        </select>
+    </div>
+</body>
+<script type="module">
+    import { createApp, reactive, ref, watch } from './vue.esm-browser.js'
+    createApp({
+        setup() {
+            const hobby = ref("")
+            const date = reactive({
+                year: "2022",
+                month: "182"
+            })
+            watch(hobby, (newValue, oldValue) => {
+                console.log("newValue:", newValue, "oldValue:", oldValue)
+            })
+            watch(date, (newValue, oldValue) => {
+                if (newValue.year == "2023") {
+                    console.log("2023")
+                }
+            })
+            watch(() => date.month, (newValue, oldValue) => {
+                console.log("newValue:", newValue, "oldValue:", oldValue)
+                if (date.month == "10") {
+                    console.log("10")
+                }
+            })
+            return {
+                hobby, date, watch
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
