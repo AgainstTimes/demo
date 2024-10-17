@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>{{add()}}</h3>
+        <h3>{{add()}}</h3>
+
+        <h3>{{sum}}</h3>
+        <h3>{{sum}}</h3>
+        <input type="text" name="" id="1" v-model.number="data.x"> <br>
+        <input type="text" name="" id="2" v-model.number="data.y">
+    </div>
+</body>
+<script type="module">
+
+    import { createApp, reactive, computed } from './vue.esm-browser.js'
+    createApp({
+        setup() {
+            const data = reactive({
+                x: 10,
+                y: 20
+            })
+            let add = () => {
+                console.log("add")
+                return data.x + data.y
+            }
+            const sum = computed(() => {
+                console.log("sum")
+                return data.x + data.y
+            })
+            return {
+                data, add, sum
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
