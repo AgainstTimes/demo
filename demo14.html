@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>{{number}}</h3>
+        <img :src=`/images/${number}.svg` alt="">
+        <button @click="next">next</button>
+        <button @click="prev">prev</button>
+        <ul>
+            <li v-for="(value,index) in 4">
+                <a href="#" @click="jump(value)">{{value}}</a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="module">
+    import { createApp, ref } from './vue.esm-browser.js'
+
+    createApp({
+        setup() {
+            const number = ref(1)
+            const prev = () => {
+                number.value--
+                if (number.value == 0) {
+                    number.value = 4
+                }
+            }
+            const next = () => {
+                number.value++
+                if (number.value == 5) {
+                    number.value = 1
+                }
+            }
+            const jump = (value) => {
+                number.value = value
+            }
+            return {
+                number, prev, next, jump
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
