@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./axios.min.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <select name="" id="" v-model="data.type">
+            <option value="0">choose</option>
+            <option value="1">ID</option>
+            <option value="2">title</option>
+        </select>
+        <input type="text" name="" id="" v-model="data.content">
+        <button @click="search">search</button>
+        <ul v-for="(value,index) in data.list">
+            <li>{{value}}</li>
+        </ul>
+    </div>
+    <script type="module">
+        import { createApp, reactive } from './vue.esm-browser.js'
+        createApp({
+            setup() {
+                const data = reactive({
+                    type: "0",
+                    content: "",
+                    list: []
+                })
+                const search = () => {
+                    data.list = []
+                    if (data.type == 1) {
+                        let id = data.content
+                        axios.get(`http://127.0.0.1/article/get/id/${id}`).then(response => {
+                            console.log("getdata:", response.data)
+                            if (response.data.status == "success") {
+                                if (response.data.data) {
+                                    data.list.push(response.data.data)
+                                }
+                            }
+                        }).catch(error => {
+                            console.log("get.error:", error)
+                        })
+                    } else if (data.type == 2) {
+                        let param = {
+                            title: data.content
+                        }
+                        axios.post('http://127.0.0.1/article/postJson/search', param).then(response => {
+                            console.log("postJson.data", response.data)
+                            if (response.data.status == "success") {
+                                for (let i = 0; i < response.data.data.length; i++) {
+                                    data.list.push(response.data.data[i])
+                                }
+                            }
+                        }).catch(error => {
+                            console.log("postJson.error", error)
+                        })
+                    }
+                }
+                return {
+                    data, search
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
