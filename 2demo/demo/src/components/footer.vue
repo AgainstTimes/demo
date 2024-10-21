@@ -1,5 +1,5 @@
 <template>
-<h3>Foo</h3>
+<h3>Footer</h3>
 </template>
 
 <script setup>
