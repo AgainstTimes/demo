@@ -6,4 +6,6 @@
   Akeelah.cn
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
