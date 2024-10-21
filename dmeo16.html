@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        width: 600px;
+        color: aqua;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+    table thead {
+        background-color: bisque;
+    }
+
+    table tr {
+        height: 30px;
+        line-height: 30px;
+        border: 1px springgreen solid;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <td><input type="checkbox" name="" id="" v-model="data.selected" @change="selecAll"></td>
+                    <td>商品</td>
+                    <td>单价</td>
+                    <td>库存</td>
+                    <td rowspan="2">操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(value,index) in data.list">
+                    <td><input type="checkbox" name="" id="" v-model="data.checkboxList" :value="value"
+                            @change="checkSelect"></td>
+                    <td>{{value.name}}</td>
+                    <td>{{value.price}}</td>
+                    <td>{{value.stock}}</td>
+                    <td>
+                        <button @click="sub(value)">
+                            -
+                        </button>
+                        {{value.number}}
+                        <button @click="add(value)">+</button>
+                    </td>
+                    <td>
+                        <button @click="del(index,value.id)">del</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>taotalPrice:{{totalPrice()}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <script type="module">
+        import { createApp,reactive } from './vue.esm-browser.js'
+        createApp({
+            setup() {
+                const data = reactive({
+                    selected: false,
+                    checkboxList: [],
+                    list: [
+                        { id: 1, name: "Akeelah", price: 12, number: 1, stock: 2 },
+                        { id: 2, name: "Jessika", price: 21, number: 1, stock: 5 },
+                        { id: 2, name: "Berserker", price: 33, number: 19, stock: 25 },
+                    ]
+                })
+                const sub = (value) => {
+                    value.number--
+                    if (value.number <= 1) {
+                        value.number = 1
+                    }
+                }
+                const add = (value) => {
+                    value.number++
+                    if (value.number >= value.stock) {
+                        value.number = value.stock
+                    }
+                }
+                const del = (index, id) => {
+                    data.list.splice(index, 1)
+                    let newArr = data.checkboxList.filter((value, index) => {
+                        return value.id != id
+                    })
+                    data.checkboxList = newArr
+                    checkSelect()
+                }
+                const totalPrice = () => {
+                    let total = 0
+                    for (let i = 0; i < data.checkboxList.length; i++) {
+                        total += data.checkboxList[i].number * data.checkboxList[i].price
+                    }
+                    return total
+                }
+                const selecAll = () => {
+                    if (data.selected) {
+                        data.checkboxList = data.list
+                    } else {
+                        data.checkboxList = []
+                    }
+                }
+                const checkSelect = () => {
+                    if (data.checkboxList.length != data.list.length || data.list.length == 0) {
+                        data.selected = false
+                    } else {
+                        data.selected = true
+                    }
+                }
+                return {
+                    data, checkSelect, add, sub, del, selecAll, totalPrice
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
