@@ -15,7 +15,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="13">
+          <list size="21">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -29,6 +29,14 @@
             <item index="10" class="java.lang.String" itemvalue="Setting" />
             <item index="11" class="java.lang.String" itemvalue="User" />
             <item index="12" class="java.lang.String" itemvalue="present" />
+            <item index="13" class="java.lang.String" itemvalue="el-icon-search" />
+            <item index="14" class="java.lang.String" itemvalue="el-icon-edit" />
+            <item index="15" class="java.lang.String" itemvalue="el-icon-plus" />
+            <item index="16" class="java.lang.String" itemvalue="el-icon-delete" />
+            <item index="17" class="java.lang.String" itemvalue="el-icon-loading" />
+            <item index="18" class="java.lang.String" itemvalue="el-icon-setting" />
+            <item index="19" class="java.lang.String" itemvalue="el-icon-present" />
+            <item index="20" class="java.lang.String" itemvalue="el-icon-User" />
           </list>
         </value>
       </option>

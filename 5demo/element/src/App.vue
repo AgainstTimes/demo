@@ -1,238 +1,137 @@
 <script setup>
-import {ElMessage, ElMessageBox, ElNotification} from 'element-plus'
 
-// 消息
+
+
 const openMsg = () => {
-  ElMessage({
-    type: 'success', // success | warning | info | error
-    message: 'dengruicode.com',
-    showClose: true
-  })
-}
+      ElMessage({
+        type: 'success', // success | warning | info | error
+        message: 'Akeelah.com',
+        showClose: true
+      })
+    }, openConfirm = () => {
+      ElMessageBox.confirm('确认删除?', '标题', {
+        type: 'warning',
+        confirmButtonText: '确认',
+        cancelButtonText: '取消'
+      }).then(() => {
+        console.log('确认')
+      }).catch(() => {
+        console.log('取消')
+      })
+    }, openNotify = () => {
+      ElNotification({
+        title: '标题',
+        message: 'Akeelah',
+        duration: 1500 // 展示时间 [单位:毫秒]
+      })
+    }, openNotify2 = () => {
+      ElNotification({
+        type: 'success', // success | warning | info | error
+        title: '标题',
+        message: 'Akeelah.com',
+        duration: 1500,
+        position: 'bottom-right'
+      })
+    }, selectedIndex = ref("3"), selected = (index, indexPath) => {
+      console.log("index", index, "indexPath", indexPath)
+    }, defaultOpeneds = ref(["1", "3"]), userCommand = (command) => { //点击菜单触发的回调
+      console.log("command:", command)
+    }, selectedName = ref("2"), tabClick = (tab, event) => {
+      console.log("tab", tab.props, "event", event)
+    }, tab = reactive({
+      arr: [
+        {name: "1", title: 'Akeelah', content: '内容1'},
+        {name: "2", title: 'Jessika', content: '内容2'},
+        {name: "3", title: 'Berserker.com', content: '内容3'},
+      ]
+    }), tabAdd = () => {
+      let index = tab.arr.length
+      index++
 
-// 确认框
-const openConfirm = () => {
-  ElMessageBox.confirm('确认删除?', '标题', {
-    type: 'warning',
-    confirmButtonText: '确认',
-    cancelButtonText: '取消'
-  }).then(() => {
-    console.log('确认')
-  }).catch(() => {
-    console.log('取消')
-  })
-}
+      tab.arr.push({
+        name: index,
+        title: '新选项卡' + index,
+        content: '内容' + index
+      })
+    }, tabRemove = (name) => {
+      console.log("name:", name)
 
-// 通知
-const openNotify = () => {
-  ElNotification({
-    title: '标题',
-    message: 'Akeelah',
-    duration: 1500 // 展示时间 [单位:毫秒]
-  })
-}
+      const index = tab.arr.findIndex((value) => {
+        return value.name === name
+      })
 
-// 通知2
-const openNotify2 = () => {
-  ElNotification({
-    type: 'success', // success | warning | info | error
-    title: '标题',
-    message: 'Akeelah.com',
-    duration: 1500,
-    position: 'bottom-right'
-  })
-}
+      tab.arr.splice(index, 1) //移除元素
+    }, name = ref(''), password = ref(''), content = ref('Jessika'), url = ref('Akeelah.com'), url2 = ref('Berserker'),
+    email = ref('123456'), selected1 = ref('2'), radio = ref("3"), radio2 = ref("b"), radio3 = ref("C"),
+    radioChange = (val) => {
+      console.log("radioChange:", val)
+    }, radioGroupChange = (val) => {
+      console.log("radioGroupChange:", val)
+    }, checked = ref(["1", "2"]), checked2 = ref([]), checkboxGroupChange = (val) => {
+      console.log("checkboxGroupChange", val)
+    }, selected11 = ref('2'), selected2 = ref(''), selected3 = ref('C'), selected4 = ref(['A', 'C']), data = reactive({
+      options: [
+        {value: 'A', label: '前端',},
+        {value: 'B', label: '后端',},
+        {value: 'C', label: '服务端',}
+      ]
+    }), selectChange = (val) => {
+      console.log("selectChange:", val)
+    }, date = ref(''), dateChange = (val) => {
+      console.log("dateChange:", val)
+    }, data1 = ref({
+      name: '',
+      radio: '',
+      checkbox: [],
+      date: '',
+      select: '',
+      multipleSelect: [],
+      textarea: ''
+    }), add = () => {
+      console.log(data1.value)
+    }, reset = () => {
+      data.value = {
+        name: '',
+        radio: '',
+        checkbox: [],
+        date: '',
+        select: '',
+        multipleSelect: [],
+        textarea: ''
+      }
+    }, data111 = ref({
+      name: '',
+      radio: '',
+      checkbox: [],
+      date: '',
+      select: '',
+      multipleSelect: [],
+      textarea: ''
+    }), add111 = () => {
+      console.log(data111.value)
+    }, reset111 = () => {
+      data111.value = {
+        name: '',
+        radio: '',
+        checkbox: [],
+        date: '',
+        select: '',
+        multipleSelect: [],
+        textarea: ''
+      }
+    }, dialog = ref(false), dialogClose = () => {
+      console.log("关闭")
+    }, currentPage = (val) => {
+      console.log("currentPage:", val)
+    }, data222 = ref({
+      arr: [
+        {id: '1', name: 'Akeelah', web: 'Akeelah.com', date: '2023-06-20'},
+        {id: '2', name: 'Jessika', web: 'www.Jessika.com', date: '2023-06-21'},
+        {id: '3', name: 'Berserker', web: 'Berserker.com', date: '2023-06-22'},
+        {id: '4', name: 'Adam', web: 'www.Adam.com', date: '2023-06-22'}
+      ]
+    });
 
-import {ref, reactive} from 'vue'
-import {Delete, Edit, Loading, Plus, Present, Setting, User} from "@element-plus/icons-vue";
-
-//默认选中的菜单索引
-//const selectedIndex = ref("2-2")
-const selectedIndex = ref("3")
-
-//选中菜单触发的回调
-const selected = (index, indexPath) => {
-  console.log("index", index, "indexPath", indexPath)
-}
-
-//默认展开的菜单索引
-const defaultOpeneds = ref(["1", "3"])
-
-//用户执行的命令
-const userCommand = (command) => { //点击菜单触发的回调
-  console.log("command:", command)
-}
-
-
-//默认选中的标签名称
-const selectedName = ref("2")
-
-//选中标签触发的回调
-const tabClick = (tab, event) => {
-  console.log("tab", tab.props, "event", event)
-}
-
-const tab = reactive({
-  arr: [
-    {name: "1", title: 'Akeelah', content: '内容1'},
-    {name: "2", title: 'Jessika', content: '内容2'},
-    {name: "3", title: 'Berserker.com', content: '内容3'},
-  ]
-})
-
-//添加
-const tabAdd = () => {
-  let index = tab.arr.length
-  index++
-
-  tab.arr.push({
-    name: index,
-    title: '新选项卡' + index,
-    content: '内容' + index
-  })
-}
-
-//移除
-const tabRemove = (name) => {
-  console.log("name:", name)
-
-  const index = tab.arr.findIndex((value) => {
-    return value.name === name
-  })
-
-  tab.arr.splice(index, 1) //移除元素
-}
-
-
-const name = ref('')
-const password = ref('')
-const content = ref('Jessika')
-const url = ref('Akeelah.com')
-const url2 = ref('Berserker')
-const email = ref('123456')
-const selected1 = ref('2')
-
-
-//单选框
-const radio = ref("3")
-const radio2 = ref("b")
-const radio3 = ref("C")
-
-const radioChange = (val) => {
-  console.log("radioChange:", val)
-}
-
-const radioGroupChange = (val) => {
-  console.log("radioGroupChange:", val)
-}
-
-//复选框
-const checked = ref(["1", "2"])
-const checked2 = ref([])
-
-const checkboxGroupChange = (val) => {
-  console.log("checkboxGroupChange", val)
-}
-
-
-const selected11 = ref('2')
-const selected2 = ref('')
-const selected3 = ref('C')
-const selected4 = ref(['A', 'C'])
-
-const data = reactive({
-  options: [
-    {value: 'A', label: '前端',},
-    {value: 'B', label: '后端',},
-    {value: 'C', label: '服务端',}
-  ]
-})
-
-//回调
-const selectChange = (val) => {
-  console.log("selectChange:", val)
-}
-
-
-const date = ref('')
-
-const dateChange = (val) => {
-  console.log("dateChange:", val)
-}
-
-const data1 = ref({
-  name: '',
-  radio: '',
-  checkbox: [],
-  date: '',
-  select: '',
-  multipleSelect: [],
-  textarea: ''
-})
-
-const add = () => {
-  console.log(data1.value)
-}
-
-const reset = () => {
-  data.value = {
-    name: '',
-    radio: '',
-    checkbox: [],
-    date: '',
-    select: '',
-    multipleSelect: [],
-    textarea: ''
-  }
-}
-
-
-const data111 = ref({
-  name: '',
-  radio: '',
-  checkbox: [],
-  date: '',
-  select: '',
-  multipleSelect: [],
-  textarea: ''
-})
-
-const add111 = () => {
-  console.log(data111.value)
-}
-
-const reset111 = () => {
-  data111.value = {
-    name: '',
-    radio: '',
-    checkbox: [],
-    date: '',
-    select: '',
-    multipleSelect: [],
-    textarea: ''
-  }
-}
-
-//对话框
-const dialog = ref(false)
-
-const dialogClose = () => {
-  console.log("关闭")
-}
-
-const currentPage = (val) => {
-  console.log("currentPage:", val)
-}
-
-
-const data222 = ref({
-  arr: [
-    {id: '1', name: 'Akeelah', web: 'Akeelah.com', date: '2023-06-20'},
-    {id: '2', name: 'Jessika', web: 'www.Jessika.com', date: '2023-06-21'},
-    {id: '3', name: 'Berserker', web: 'Berserker.com', date: '2023-06-22'},
-    {id: '4', name: 'Adam', web: 'www.Adam.com', date: '2023-06-22'}
-  ]
-})
 
 //选中的复选框
 let idArr = []
@@ -285,16 +184,17 @@ const edit = (index, row) => {
   <hr>
   <h3>图标</h3>
   <el-icon>
-    <Plus/>
+    <el-icon-plus />
+    <el-icon-plus />
   </el-icon>
   <el-icon>
-    <Edit/>
+    <el-icon-edit />
   </el-icon>
   <el-icon>
-    <Delete/>
+    <el-icon-delete />
   </el-icon>
   <el-icon class="is-loading">
-    <Loading/>
+    <el-icon-loading />
   </el-icon>
 
   <hr>
@@ -329,19 +229,19 @@ const edit = (index, row) => {
   <el-button-group>
     <el-button type="primary">
       <el-icon>
-        <Plus/>
+        <el-icon-plus />
       </el-icon>
     </el-button>
 
     <el-button type="primary">
       <el-icon>
-        <Edit/>
+        <el-icon-edit />
       </el-icon>
     </el-button>
 
     <el-button type="primary">
       <el-icon>
-        <Delete/>
+        <el-icon-delete />
       </el-icon>
     </el-button>
   </el-button-group>
@@ -400,19 +300,19 @@ const edit = (index, row) => {
     </el-sub-menu>
     <el-menu-item index="2">
       <el-icon>
-        <Edit/>
+        <el-icon-edit />
       </el-icon>
       <template #title>导航二</template>
     </el-menu-item>
     <el-menu-item index="3">
       <el-icon>
-        <Delete/>
+        <el-icon-delete />
       </el-icon>
       <template #title>导航三</template>
     </el-menu-item>
     <el-menu-item index="4">
       <el-icon>
-        <Setting/>
+        <el-icon-setting />
       </el-icon>
       <template #title>导航四</template>
     </el-menu-item>
@@ -435,7 +335,8 @@ const edit = (index, row) => {
     </el-sub-menu>
     <el-menu-item index="2">
       <el-icon>
-        <Edit/>
+       
+        <el-icon-edit />
       </el-icon>
       <template #title>导航二</template>
     </el-menu-item>
@@ -453,7 +354,7 @@ const edit = (index, row) => {
     </el-sub-menu>
     <el-menu-item index="4">
       <el-icon>
-        <Setting/>
+        <el-icon-setting />
       </el-icon>
       <template #title>导航四</template>
     </el-menu-item>
@@ -464,13 +365,13 @@ const edit = (index, row) => {
     <el-breadcrumb-item><a href="#">首页</a></el-breadcrumb-item>
     <el-breadcrumb-item>
       <el-icon>
-        <Plus/>
+        <el-icon-plus />
       </el-icon>
       Berserker
     </el-breadcrumb-item>
     <el-breadcrumb-item>
       <el-icon>
-        <present/>
+        <el-icon-present />
       </el-icon>
       Berserker.com
     </el-breadcrumb-item>
@@ -479,7 +380,7 @@ const edit = (index, row) => {
   <h3>下拉菜单</h3><br>
   <el-dropdown @command="userCommand">
             <span>
-                个人中心<el-icon><User/></el-icon>
+                个人中心<el-icon><el-icon-User /></el-icon>
             </span>
     <template #dropdown>
       <el-dropdown-menu>
@@ -523,9 +424,9 @@ const edit = (index, row) => {
   <hr>
   <hr>
 
-  <div style="width: 300px" >
+  <div style="width: 300px">
     <el-icon>
-      <el-icon-search />
+      <el-icon-search/>
     </el-icon>
     <!-- clearable 可一键清空 -->
     <h3>输入框</h3>
