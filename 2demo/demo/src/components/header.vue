@@ -8,6 +8,8 @@
   <button @click="userAdd()" >userAdd</button>
   <br>
   {{web}}
+  <br>
+  <slot />
 </template>
 
 <script setup>

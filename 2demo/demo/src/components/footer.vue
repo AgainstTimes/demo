@@ -1,6 +1,8 @@
 <template>
 <h3>Footer</h3>
   user:{{props.user}}
+  <br>
+  <slot name="url" email="Jessika.us" user="1000"/>
 </template>
 
 <script setup>
