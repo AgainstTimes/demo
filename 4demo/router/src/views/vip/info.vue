@@ -3,8 +3,7 @@
 </script>
 
 <template>
-<router-view />
-
+  <h3>info</h3>
 </template>
 
 <style scoped>
